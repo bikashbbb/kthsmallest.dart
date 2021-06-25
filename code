@@ -1,0 +1,29 @@
+void main() {
+  print(solution().getKthelement([7, 3, 20, 10, 15, 4], 3));
+}
+
+class solution {
+  int getKthelement(List<int> inputlist, int k) {
+    int pivot = inputlist[k - 1];
+    List<int> least_item = []; // [3,7,4]
+    List<int> big_item = [];
+    for (int i = 0; i < inputlist.length; i++) {
+      // 0 isto 6 ..........5<6
+      if (inputlist[i] < pivot) {
+        least_item.add(inputlist[i]);
+      } else if (inputlist[i] > pivot) {
+        big_item.add(inputlist[i]);
+      }
+    }
+    if (least_item.length == k - 1) {
+      return pivot;
+    } else if (least_item.length == 1 || least_item.isEmpty) {
+      // 0 or 1
+      getKthelement(least_item + [pivot] + big_item, k); // [3] + [4]+
+    } else if (least_item.length == k) {
+      // 3
+      getKthelement(least_item, k);
+    }
+    return getKthelement(least_item+[pivot]+big_item, k); // more than k
+  }
+}
