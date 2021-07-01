@@ -27,3 +27,5 @@ class solution {
     return getKthelement(least_item+[pivot]+big_item, k); // more than k
   }
 }
+
+// the algorithm is a quickslect one and can be updated by a if condition if lenght of leasat item is > k pass in least item as a parameter..
